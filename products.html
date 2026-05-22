@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopKart – Online Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Shop<span>Kart</span></div>
+  <nav>
+    <a href="ShopKart_Ecommerce.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="deals.html">Deals</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="header-right">
+    <input class="search-bar" type="text" placeholder="Search products..." oninput="filterProducts(this.value)"/>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="products" style="padding-top: 40px; min-height: 70vh;">
+  <div class="section-header">
+    <h2 class="section-title">All <span>Products</span></h2>
+  </div>
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('sale',this)">On Sale</button>
+    <button class="filter-btn" onclick="setFilter('new',this)">New</button>
+    <select class="sort-select" onchange="sortProducts(this.value)">
+      <option value="default">Sort: Default</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+      <option value="rating">Top Rated</option>
+    </select>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+    <!-- CART OVERLAY + SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <div class="cart-title">🛒 My Cart</div>
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty</p></div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span>FREE</span></div>
+    <div class="cart-grand"><span>Total</span><span id="totalAmt">₹0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✅</span>
+  <span id="toastMsg">Added to cart!</span>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a><a href="#">Terms of Use</a>
+    <a href="#">Shipping Info</a><a href="#">Returns</a><a href="#">Support</a>
+  </div>
+  <p>© 2024 <strong>ShopKart</strong> — Built with HTML, CSS & JavaScript | Developed by <strong>Shree</strong></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
