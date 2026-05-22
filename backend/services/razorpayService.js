@@ -1,28 +1,36 @@
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
+import dotenv from 'dotenv';
 
-const isRazorpayConfigured = !!(
-  process.env.RAZORPAY_KEY_ID &&
-  process.env.RAZORPAY_KEY_SECRET
-);
+// Load env explicitly at the top to secure immediate parsing
+dotenv.config();
 
 let razorpayInstance = null;
 
-if (isRazorpayConfigured) {
-  razorpayInstance = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
-  });
-} else {
-  console.log('Razorpay credentials missing. Using Mock Payment Gateway fallback.');
-}
+const getRazorpayInstance = () => {
+  if (razorpayInstance) return razorpayInstance;
+  
+  const key_id = process.env.RAZORPAY_KEY_ID;
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  
+  if (key_id && key_secret) {
+    razorpayInstance = new Razorpay({
+      key_id,
+      key_secret,
+    });
+    console.log('Razorpay initialized successfully for live transactions.');
+    return razorpayInstance;
+  }
+  return null;
+};
 
 export const createRazorpayOrder = async (amountInINR, receiptId) => {
   const amountInPaise = Math.round(amountInINR * 100);
+  const rzp = getRazorpayInstance();
 
-  if (isRazorpayConfigured && razorpayInstance) {
+  if (rzp) {
     try {
-      const order = await razorpayInstance.orders.create({
+      const order = await rzp.orders.create({
         amount: amountInPaise,
         currency: 'INR',
         receipt: receiptId || `receipt_${Date.now()}`,
@@ -56,11 +64,12 @@ export const verifyRazorpayPayment = (razorpayOrderId, razorpayPaymentId, razorp
     return true;
   }
 
-  if (isRazorpayConfigured) {
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  if (key_secret) {
     try {
       const text = razorpayOrderId + '|' + razorpayPaymentId;
       const generated_signature = crypto
-        .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+        .createHmac('sha256', key_secret)
         .update(text)
         .digest('hex');
 

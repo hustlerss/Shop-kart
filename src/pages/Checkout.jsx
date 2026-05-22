@@ -27,7 +27,7 @@ const Checkout = () => {
       return;
     }
     if (cart.length === 0 && step !== 3) {
-      navigate('/api/products');
+      navigate('/products');
     }
   }, [userInfo, cart, step]);
 
