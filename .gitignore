@@ -7,18 +7,86 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependency directories
 node_modules
+jspm_packages/
+
+# Build folders
 dist
 dist-ssr
+build
+coverage
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local config
 *.local
 
-# Editor directories and files
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Cache
+.cache
+.parcel-cache
+.next
+.nuxt
+.svelte-kit
+
+# Vite
+vite.svg
+
+# Temporary files
+tmp/
+temp/
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# MongoDB
+*.mongodb
+
+# Optional lock files (keep only ONE usually)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Render / deployment
+.vercel
+.netlify
+.render
+
+# Tailwind
+.tailwindcss
+
+# Testing
+coverage/
+.nyc_output
+
+# Mac/Linux hidden files
+.AppleDouble
+.LSOverride
+
+# Windows hidden files
+ehthumbs.db
+Desktop.ini
