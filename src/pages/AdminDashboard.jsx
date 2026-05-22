@@ -100,7 +100,7 @@ const AdminDashboard = () => {
 
       {/* Quick Access Links */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <a href="/admin/products" className="bg-primary text-white rounded-2xl p-5 flex items-center gap-4 hover:bg-primary/90 transition-colors shadow-lg cursor-pointer">
+        <a href="/admin/api/products" className="bg-primary text-white rounded-2xl p-5 flex items-center gap-4 hover:bg-primary/90 transition-colors shadow-lg cursor-pointer">
           <span className="text-[2rem]">📦</span>
           <div>
             <p className="font-bold text-base">Manage Products</p>

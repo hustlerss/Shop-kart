@@ -125,7 +125,7 @@ const Profile = () => {
               <div className="text-[3.5rem] mb-4">📦</div>
               <h3 className="font-serif text-xl font-bold text-primary mb-2">No Orders Yet</h3>
               <p className="text-gray-400 text-sm mb-6">Looks like you haven't placed any orders yet.</p>
-              <Link to="/products" className="bg-accent text-white font-bold px-8 py-3 rounded-full hover:bg-accentHover transition-colors">
+              <Link to="/api/products" className="bg-accent text-white font-bold px-8 py-3 rounded-full hover:bg-accentHover transition-colors">
                 Start Shopping
               </Link>
             </div>

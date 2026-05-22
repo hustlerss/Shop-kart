@@ -67,13 +67,13 @@ const Home = () => {
           </p>
           <div className="flex gap-4 justify-center md:justify-start flex-wrap">
             <Link
-              to="/products"
+              to="/api/products"
               className="bg-accent border-2 border-accent hover:bg-transparent text-white hover:text-accent rounded-[30px] px-[30px] py-[13px] text-[0.95rem] font-bold tracking-[0.5px] scale-100 hover:scale-105 transition-all duration-200"
             >
               Shop Now →
             </Link>
             <Link
-              to="/products?tag=sale"
+              to="/api/products?tag=sale"
               className="border-2 border-white/40 hover:border-gold text-white hover:text-gold rounded-[30px] px-[30px] py-[13px] text-[0.95rem] font-medium tracking-[0.5px] transition-all duration-200"
             >
               View Deals
@@ -103,7 +103,7 @@ const Home = () => {
           <h2 className="font-serif text-[1.6rem] font-bold text-primary">
             Browse <span className="text-accent">Categories</span>
           </h2>
-          <Link to="/products" className="text-accent hover:text-accentHover text-[0.88rem] font-bold tracking-[0.3px]">
+          <Link to="/api/products" className="text-accent hover:text-accentHover text-[0.88rem] font-bold tracking-[0.3px]">
             See All →
           </Link>
         </div>
@@ -157,7 +157,7 @@ const Home = () => {
               </div>
             </div>
             <Link
-              to="/products?tag=sale"
+              to="/api/products?tag=sale"
               className="bg-primary hover:bg-primary/95 text-white font-bold px-8 py-3 rounded-full text-sm scale-100 hover:scale-105 active:scale-95 transition-all duration-150"
             >
               Shop Flash Items →

@@ -50,9 +50,9 @@ const AdminLayout = () => {
           </Link>
           
           <Link
-            to="/admin/products"
+            to="/admin/api/products"
             className={`flex items-center gap-3 px-4 py-3 rounded-lg text-[0.9rem] font-medium transition-colors ${
-              isActive('/admin/products') 
+              isActive('/admin/api/products') 
                 ? 'bg-accent text-white' 
                 : 'text-white/70 hover:text-white hover:bg-white/5'
             }`}
@@ -99,7 +99,7 @@ const AdminLayout = () => {
         <header className="h-[70px] bg-white border-b border-gray-200 px-8 flex items-center justify-between shadow-sm flex-shrink-0">
           <h1 className="font-semibold text-gray-800 text-lg">
             {isActive('/admin') && 'Control Analytics Dashboard'}
-            {isActive('/admin/products') && 'Catalog Product Listings'}
+            {isActive('/admin/api/products') && 'Catalog Product Listings'}
             {isActive('/admin/orders') && 'Customer Order Records'}
             {isActive('/admin/users') && 'Registered Platform Users'}
           </h1>

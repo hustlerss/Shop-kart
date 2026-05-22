@@ -75,7 +75,7 @@ const ProductDetails = () => {
         <div className="text-[3.5rem] mb-4">⚠️</div>
         <h2 className="font-serif text-2xl font-bold text-primary mb-2">Product Not Found</h2>
         <p className="text-gray-400 mb-6">{error || 'The product you are looking for does not exist.'}</p>
-        <Link to="/products" className="bg-accent text-white font-bold px-8 py-3 rounded-full shadow hover:bg-accentHover">
+        <Link to="/api/products" className="bg-accent text-white font-bold px-8 py-3 rounded-full shadow hover:bg-accentHover">
           Back to Shop
         </Link>
       </div>
@@ -92,7 +92,7 @@ const ProductDetails = () => {
       {/* ── BREADCRUMBS ── */}
       <div className="text-xs text-gray-400 mb-6 font-medium">
         <Link to="/" className="hover:text-primary">Home</Link> &gt;{' '}
-        <Link to="/products" className="hover:text-primary">Products</Link> &gt;{' '}
+        <Link to="/api/products" className="hover:text-primary">Products</Link> &gt;{' '}
         <span className="text-gray-600">{productData.title}</span>
       </div>
 

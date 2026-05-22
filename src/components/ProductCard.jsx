@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
   };
 
   const handleCardClick = () => {
-    navigate(`/products/${product._id}`);
+    navigate(`/api/products/${product._id}`);
   };
 
   // Calculate standard old price based on discount
