@@ -7,7 +7,7 @@ import AdminLayout from './layouts/AdminLayout.jsx';
 
 // Public/User Pages
 import Home from './pages/Home.jsx';
-import Products from './pages/api/products.jsx';
+import Products from './pages/products.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
 import Checkout from './pages/Checkout.jsx';
 import Login from './pages/Login.jsx';
