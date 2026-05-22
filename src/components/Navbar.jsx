@@ -16,11 +16,11 @@ const Navbar = () => {
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchVal(query);
-    if (location.pathname === '/api/products') {
-      navigate(`/api/products?search=${query}`);
+    if (location.pathname === '/products') {
+      navigate(`/products?search=${query}`);
     } else {
       if (query.trim()) {
-        navigate(`/api/products?search=${query}`);
+        navigate(`/products?search=${query}`);
       }
     }
   };
@@ -40,8 +40,8 @@ const Navbar = () => {
 
         <nav className="hidden md:flex gap-7">
           <Link to="/" className="text-white/80 hover:text-gold text-[0.9rem] font-medium tracking-[0.5px] transition-colors duration-200">Home</Link>
-          <Link to="/api/products" className="text-white/80 hover:text-gold text-[0.9rem] font-medium tracking-[0.5px] transition-colors duration-200">Products</Link>
-          <Link to="/api/products?tag=sale" className="text-white/80 hover:text-gold text-[0.9rem] font-medium tracking-[0.5px] transition-colors duration-200">Deals</Link>
+          <Link to="/products" className="text-white/80 hover:text-gold text-[0.9rem] font-medium tracking-[0.5px] transition-colors duration-200">Products</Link>
+          <Link to="/products?tag=sale" className="text-white/80 hover:text-gold text-[0.9rem] font-medium tracking-[0.5px] transition-colors duration-200">Deals</Link>
           <Link to="/profile" className="text-white/80 hover:text-gold text-[0.9rem] font-medium tracking-[0.5px] transition-colors duration-200">My Orders</Link>
         </nav>
 
@@ -167,7 +167,7 @@ const Navbar = () => {
                     <div className="text-[3.5rem] mb-3">🛒</div>
                     <p className="font-medium text-lg">Your cart is empty</p>
                     <Link
-                      to="/api/products"
+                      to="/products"
                       onClick={() => setIsCartOpen(false)}
                       className="mt-4 inline-block text-accent hover:text-accentHover font-semibold text-sm underline"
                     >

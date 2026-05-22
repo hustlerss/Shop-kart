@@ -20,7 +20,7 @@ export const resolveImageUrl = (imagePath) => {
 };
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: getBackendURL(),
 });
 
 // Request interceptor to automatically inject JWT token
@@ -53,42 +53,42 @@ API.interceptors.response.use(
 );
 
 export const authAPI = {
-  login: (credentials) => API.post('/auth/login', credentials),
-  register: (userData) => API.post('/auth/register', userData),
-  getProfile: () => API.get('/auth/profile'),
-  updateProfile: (profileData) => API.put('/auth/profile', profileData),
+  login: (credentials) => API.post('/api/auth/login', credentials),
+  register: (userData) => API.post('/api/auth/register', userData),
+  getProfile: () => API.get('/api/auth/profile'),
+  updateProfile: (profileData) => API.put('/api/auth/profile', profileData),
 };
 
 export const productsAPI = {
-  getProducts: (params) => API.get('/products', { params }),
-  getProductById: (id) => API.get(`/products/${id}`),
-  createReview: (id, reviewData) => API.post(`/products/${id}/review`, reviewData),
+  getProducts: (params) => API.get('/api/products', { params }),
+  getProductById: (id) => API.get(`/api/products/${id}`),
+  createReview: (id, reviewData) => API.post(`/api/products/${id}/review`, reviewData),
 };
 
 export const cartAPI = {
-  getCart: () => API.get('/cart'),
-  syncCart: (cartItems) => API.post('/cart', { cartItems }),
+  getCart: () => API.get('/api/cart'),
+  syncCart: (cartItems) => API.post('/api/cart', { cartItems }),
 };
 
 export const ordersAPI = {
-  createOrder: (orderData) => API.post('/orders', orderData),
-  verifyPayment: (paymentDetails) => API.post('/orders/verify', paymentDetails),
-  getMyOrders: () => API.get('/orders/mine'),
+  createOrder: (orderData) => API.post('/api/orders', orderData),
+  verifyPayment: (paymentDetails) => API.post('/api/orders/verify', paymentDetails),
+  getMyOrders: () => API.get('/api/orders/mine'),
 };
 
 export const adminAPI = {
-  getStats: () => API.get('/admin/stats'),
-  getUsers: () => API.get('/admin/users'),
-  deleteUser: (id) => API.delete(`/admin/users/${id}`),
-  getOrders: () => API.get('/admin/orders'),
-  updateOrderStatus: (id, orderStatus) => API.put(`/admin/orders/${id}`, { orderStatus }),
-  createProduct: (formData) => API.post('/admin/products', formData, {
+  getStats: () => API.get('/api/admin/stats'),
+  getUsers: () => API.get('/api/admin/users'),
+  deleteUser: (id) => API.delete(`/api/admin/users/${id}`),
+  getOrders: () => API.get('/api/admin/orders'),
+  updateOrderStatus: (id, orderStatus) => API.put(`/api/admin/orders/${id}`, { orderStatus }),
+  createProduct: (formData) => API.post('/api/admin/products', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  updateProduct: (id, formData) => API.put(`/admin/products/${id}`, formData, {
+  updateProduct: (id, formData) => API.put(`/api/admin/products/${id}`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  deleteProduct: (id) => API.delete(`/admin/products/${id}`),
+  deleteProduct: (id) => API.delete(`/api/admin/products/${id}`),
 };
 
 export default API;

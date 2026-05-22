@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { adminAPI } from '../services/api.js';
 import Loader from '../components/Loader.jsx';
 
@@ -100,27 +101,27 @@ const AdminDashboard = () => {
 
       {/* Quick Access Links */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <a href="/admin/api/products" className="bg-primary text-white rounded-2xl p-5 flex items-center gap-4 hover:bg-primary/90 transition-colors shadow-lg cursor-pointer">
+        <Link to="/admin/products" className="bg-primary text-white rounded-2xl p-5 flex items-center gap-4 hover:bg-primary/90 transition-colors shadow-lg cursor-pointer">
           <span className="text-[2rem]">📦</span>
           <div>
             <p className="font-bold text-base">Manage Products</p>
             <p className="text-white/60 text-xs">Add, edit, or delete catalog items</p>
           </div>
-        </a>
-        <a href="/admin/orders" className="bg-accent text-white rounded-2xl p-5 flex items-center gap-4 hover:bg-accentHover transition-colors shadow-lg cursor-pointer">
+        </Link>
+        <Link to="/admin/orders" className="bg-accent text-white rounded-2xl p-5 flex items-center gap-4 hover:bg-accentHover transition-colors shadow-lg cursor-pointer">
           <span className="text-[2rem]">📋</span>
           <div>
             <p className="font-bold text-base">Manage Orders</p>
             <p className="text-white/60 text-xs">Update order delivery statuses</p>
           </div>
-        </a>
-        <a href="/admin/users" className="bg-gold text-primary rounded-2xl p-5 flex items-center gap-4 hover:bg-gold/90 transition-colors shadow-lg cursor-pointer">
+        </Link>
+        <Link to="/admin/users" className="bg-gold text-primary rounded-2xl p-5 flex items-center gap-4 hover:bg-gold/90 transition-colors shadow-lg cursor-pointer">
           <span className="text-[2rem]">👥</span>
           <div>
             <p className="font-bold text-base">Manage Users</p>
             <p className="text-white/60 text-xs">View and moderate platform accounts</p>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );
