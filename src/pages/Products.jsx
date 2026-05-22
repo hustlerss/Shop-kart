@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext.jsx';
 import ProductCard from '../components/ProductCard.jsx';
@@ -22,11 +22,17 @@ const Products = () => {
 
   // Sync state with URL search param changes
   useEffect(() => {
-    setLocalSearch(searchParam);
+    const timer = setTimeout(() => {
+      setLocalSearch(searchParam);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [searchParam]);
 
   useEffect(() => {
-    setTag(tagParam);
+    const timer = setTimeout(() => {
+      setTag(tagParam);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [tagParam]);
 
   // Trigger API fetch on changes

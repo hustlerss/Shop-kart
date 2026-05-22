@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext.jsx';
+import { resolveImageUrl } from '../services/api.js';
 
 const ProductCard = ({ product }) => {
   const { addToCart, wishlist, toggleWishlist } = useContext(ShopContext);
@@ -57,7 +58,7 @@ const ProductCard = ({ product }) => {
           <span className="emoji-holder text-[4rem] filter drop-shadow">{product.images[0]}</span>
         ) : (
           <img 
-            src={`http://localhost:5000${product.images[0]}`.startsWith('http://localhost:5000/uploads') ? `http://localhost:5000${product.images[0]}` : product.images[0]}
+            src={resolveImageUrl(product.images[0])}
             alt={product.title}
             className="w-full h-full object-cover"
           />

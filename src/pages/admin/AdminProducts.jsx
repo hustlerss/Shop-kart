@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { adminAPI, productsAPI } from '../../services/api.js';
 import Loader from '../../components/Loader.jsx';
 
@@ -18,10 +18,6 @@ const AdminProducts = () => {
   const [submitting, setSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState(null);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -33,6 +29,13 @@ const AdminProducts = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchProducts();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 

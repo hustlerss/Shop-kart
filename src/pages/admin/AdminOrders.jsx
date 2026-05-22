@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { adminAPI } from '../../services/api.js';
 import Loader from '../../components/Loader.jsx';
 
@@ -17,10 +17,6 @@ const AdminOrders = () => {
   const [updatingId, setUpdatingId] = useState(null);
   const [filterStatus, setFilterStatus] = useState('all');
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
   const fetchOrders = async () => {
     setLoading(true);
     try {
@@ -33,6 +29,13 @@ const AdminOrders = () => {
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchOrders();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleStatusUpdate = async (orderId, newStatus) => {
     setUpdatingId(orderId);
     try {
@@ -41,6 +44,7 @@ const AdminOrders = () => {
         prev.map((o) => (o._id === orderId ? { ...o, orderStatus: newStatus } : o))
       );
     } catch (err) {
+      console.error(err);
       alert('Failed to update order status.');
     } finally {
       setUpdatingId(null);

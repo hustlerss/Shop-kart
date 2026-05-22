@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext.jsx';
 import { ordersAPI } from '../services/api.js';
@@ -25,14 +25,6 @@ const Profile = () => {
     },
   });
 
-  useEffect(() => {
-    if (!userInfo) {
-      navigate('/login');
-      return;
-    }
-    fetchOrders();
-  }, [userInfo]);
-
   const fetchOrders = async () => {
     setOrdersLoading(true);
     try {
@@ -44,6 +36,17 @@ const Profile = () => {
       setOrdersLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/login');
+      return;
+    }
+    const timer = setTimeout(() => {
+      fetchOrders();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [userInfo]);
 
   const handleProfileSubmit = async (e) => {
     e.preventDefault();

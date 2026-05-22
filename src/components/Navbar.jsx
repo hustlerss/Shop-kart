@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext.jsx';
 import { AnimatePresence, motion } from 'framer-motion';
+import { resolveImageUrl } from '../services/api.js';
 
 const Navbar = () => {
   const { cart, cartCount, cartTotal, updateQty, removeFromCart, userInfo, logout } = useContext(ShopContext);
@@ -182,7 +183,7 @@ const Navbar = () => {
                           <span>{item.product.images[0]}</span>
                         ) : (
                           <img
-                            src={`http://localhost:5000${item.product.images[0]}`.startsWith('http://localhost:5000/uploads') ? `http://localhost:5000${item.product.images[0]}` : item.product.images[0]}
+                            src={resolveImageUrl(item.product.images[0])}
                             alt={item.product.title}
                             className="w-full h-full object-cover rounded-xl"
                           />

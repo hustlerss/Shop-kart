@@ -1,7 +1,26 @@
 import axios from 'axios';
 
+export const getBackendURL = () => {
+  const url = import.meta.env.VITE_API_URL;
+  if (url) {
+    // If the url ends with '/api', strip it to get the base backend URL
+    return url.endsWith('/api') ? url.slice(0, -4) : url;
+  }
+  return 'http://localhost:5000';
+};
+
+export const resolveImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  if (imagePath.length <= 2) return imagePath; // emoji or single-char
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+  const backendUrl = getBackendURL();
+  return `${backendUrl}${imagePath}`;
+};
+
 const API = axios.create({
-baseURL: `${import.meta.env.VITE_API_URL}/api` || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
 });
 
 // Request interceptor to automatically inject JWT token

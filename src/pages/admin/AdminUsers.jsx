@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { adminAPI } from '../../services/api.js';
 import Loader from '../../components/Loader.jsx';
 
@@ -6,10 +6,6 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -22,6 +18,13 @@ const AdminUsers = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchUsers();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleDelete = async (id, name) => {
     if (!window.confirm(`Are you sure you want to permanently delete user "${name}"?`)) return;

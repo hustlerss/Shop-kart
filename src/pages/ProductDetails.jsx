@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext.jsx';
-import { productsAPI } from '../services/api.js';
+import { productsAPI, resolveImageUrl } from '../services/api.js';
 import Loader from '../components/Loader.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 
@@ -40,8 +40,11 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    fetchProductDetails();
-    setQty(1); // reset quant on detail view change
+    const timer = setTimeout(() => {
+      fetchProductDetails();
+      setQty(1); // reset quant on detail view change
+    }, 0);
+    return () => clearTimeout(timer);
   }, [id]);
 
   const handleAddReview = async (e) => {
@@ -106,7 +109,7 @@ const ProductDetails = () => {
               <span className="filter drop-shadow-md">{activeImage}</span>
             ) : (
               <img 
-                src={`http://localhost:5000${activeImage}`.startsWith('http://localhost:5000/uploads') ? `http://localhost:5000${activeImage}` : activeImage}
+                src={resolveImageUrl(activeImage)}
                 alt={productData.title} 
                 className="w-full h-full object-cover"
               />
@@ -133,7 +136,7 @@ const ProductDetails = () => {
                   <span>{img}</span>
                 ) : (
                   <img 
-                    src={`http://localhost:5000${img}`.startsWith('http://localhost:5000/uploads') ? `http://localhost:5000${img}` : img} 
+                    src={resolveImageUrl(img)} 
                     alt={productData.title} 
                     className="w-full h-full object-cover rounded-xl"
                   />

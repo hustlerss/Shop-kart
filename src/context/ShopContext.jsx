@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { authAPI, productsAPI, cartAPI } from '../services/api.js';
 
 export const ShopContext = createContext();
@@ -233,12 +233,15 @@ export const ShopProvider = ({ children }) => {
 
   // Load products and cart on initialization/session changes
   useEffect(() => {
-    fetchProducts();
-    if (userInfo) {
-      fetchUserCart();
-    } else {
-      setCart([]); // reset cart if user logs out
-    }
+    const timer = setTimeout(() => {
+      fetchProducts();
+      if (userInfo) {
+        fetchUserCart();
+      } else {
+        setCart([]); // reset cart if user logs out
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [userInfo]);
 
   return (
